@@ -4,7 +4,8 @@ public class StringCalculator {
         if (input.isEmpty()) {
             return 0;
         } else {
-            return Integer.parseInt(input);
+            String[] terms = input.split(",");
+            return Integer.parseInt(terms[0]);
         }
     }
 }

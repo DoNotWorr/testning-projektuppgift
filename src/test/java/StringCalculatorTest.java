@@ -1,5 +1,6 @@
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class StringCalculatorTest {
@@ -31,5 +32,13 @@ public class StringCalculatorTest {
         int expected = 1;
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Two numbers should with comma delimiter should not throw any exceptions. Don't care about return value")
+    void twoInputsDoesntThrowException() {
+        String input = "1,2";
+        //From https://github.com/assertj/assertj-core/issues/943
+        assertThatCode(() -> calculator.add(input)).doesNotThrowAnyException();
     }
 }
