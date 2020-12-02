@@ -16,4 +16,12 @@ public class StringCalculatorTest {
         int actual = calculator.add("");
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void inputReturnsIntRepresentation() {
+        String input = "0";
+        int expected = 0;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
