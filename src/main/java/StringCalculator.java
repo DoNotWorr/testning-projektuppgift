@@ -1,5 +1,6 @@
 public class StringCalculator {
 
-    public void add(String s) {
+    public int add(String s) {
+        return 0;
     }
 }
