@@ -1,6 +1,10 @@
 public class StringCalculator {
 
     public int add(String s) {
-        return 0;
+        if(s.isEmpty()) {
+            return 0;
+        } else {
+            return Integer.valueOf(s);
+        }
     }
 }

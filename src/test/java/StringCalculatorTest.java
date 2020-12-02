@@ -24,4 +24,12 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void anotherInputReturnsIntRepresentation() {
+        String input = "1";
+        int expected = 1;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
