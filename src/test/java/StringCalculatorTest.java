@@ -41,4 +41,13 @@ public class StringCalculatorTest {
         //From https://github.com/assertj/assertj-core/issues/943
         assertThatCode(() -> calculator.add(input)).doesNotThrowAnyException();
     }
+
+    @Test
+    @DisplayName("Input with two numbers and comma deliminator should return sum of numbers")
+    void twoInputsWithDelimiterShouldReturnSum() {
+        String input = "1,2";
+        int expected = 3;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
