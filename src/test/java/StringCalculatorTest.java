@@ -43,7 +43,7 @@ public class StringCalculatorTest {
     }
 
     @Test
-    @DisplayName("Input with two numbers and comma deliminator should return sum of numbers")
+    @DisplayName("Input with two numbers and comma delimiter should return sum of numbers")
     void twoInputsWithDelimiterShouldReturnSum() {
         String input = "1,2";
         int expected = 3;
