@@ -1,15 +1,11 @@
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class StringCalculator {
 
     /**
-     *
      * @param input numbers separated by comma
-     * @throws NumberFormatException non-numbers
      * @return sum of numbers
+     * @throws NumberFormatException non-numbers
      */
     public int add(String input) {
         String delimiter = ",";
@@ -18,6 +14,7 @@ public class StringCalculator {
         }
         //https://www.baeldung.com/java-string-with-separator-to-list
         //https://www.baeldung.com/java-8-collectors
-        return Stream.of(input.split(delimiter)).mapToInt(Integer::parseInt).sum();
+        //Replace alternative with default delimiter. Converts to int stream and summarizes
+        return Stream.of(input.replace("\n", ",").split(delimiter)).mapToInt(Integer::parseInt).sum();
     }
 }
