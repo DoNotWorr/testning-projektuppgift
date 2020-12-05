@@ -50,4 +50,13 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Input with two numbers and comma delimiter should return sum of numbers")
+    void threeNumbersValidInput() {
+        String input = "1,2,3";
+        int expected = 6;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
