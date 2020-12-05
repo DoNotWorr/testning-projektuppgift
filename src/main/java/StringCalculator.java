@@ -8,13 +8,17 @@ public class StringCalculator {
      * @throws NumberFormatException non-numbers
      */
     public int add(String input) {
-        String delimiter = ",";
+        String defaultDelimiter = ",";
+        String alternativeDelimiter = "\n";
         if (input.isEmpty()) {
             return 0;
         }
         //https://www.baeldung.com/java-string-with-separator-to-list
         //https://www.baeldung.com/java-8-collectors
         //Replace alternative with default delimiter. Converts to int stream and summarizes
-        return Stream.of(input.replace("\n", ",").split(delimiter)).mapToInt(Integer::parseInt).sum();
+        return Stream.of(input.replace(alternativeDelimiter, defaultDelimiter)
+                .split(defaultDelimiter))
+                .mapToInt(Integer::parseInt)
+                .sum();
     }
 }
