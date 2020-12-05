@@ -2,7 +2,7 @@ public class StringCalculator {
 
     /**
      *
-     * @param input
+     * @param input numbers separated by comma
      * @throws NumberFormatException non-numbers
      * @return sum of numbers
      */
@@ -13,8 +13,8 @@ public class StringCalculator {
         String[] terms = input.split(",");
 
         int sum = 0;
-        for (int i = 0; i < terms.length; i++) {
-            sum += Integer.parseInt(terms[i]);
+        for (String term : terms) {
+            sum += Integer.parseInt(term);
         }
         return sum;
     }
