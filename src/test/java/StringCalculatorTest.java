@@ -72,7 +72,7 @@ public class StringCalculatorTest {
     @Test
     @DisplayName("Custom delimiter syntax should throw exception if no custom delimiter is given")
     void invalidAlternativeDelimiter() {
-        String input = "//[]\n1,2,3,4,5,6,7,8,9,10";
+        String input = "//[]\n1,2";
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
     }
 
@@ -104,6 +104,22 @@ public class StringCalculatorTest {
     void illegalArgumentThree() {
         String input = "1,";
         assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Changing delimiter invalidates the default delimiter")
+    void alternativeDelimiterInvalidatesDefaultDelimiter() {
+        String input = "//[;]\n1,2";
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Input with two numbers and comma delimiter should return sum of numbers")
+    void alternativeDelimiterChanges() {
+        String input = "//;\\n1;2";
+        int expected = 3;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
     }
 }
 
