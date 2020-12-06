@@ -77,4 +77,18 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Double delimiter, followed by number")
+    void illegalArgumentOne() {
+        String input = "1,\n3";
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Double delimiter at the end")
+    void illegalArgumentTwo() {
+        String input = "1,\n";
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
 }
