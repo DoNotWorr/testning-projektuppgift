@@ -91,4 +91,11 @@ public class StringCalculatorTest {
         String input = "1,\n";
         assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
     }
+
+    @Test
+    @DisplayName("Single delimiter at the end")
+    void illegalArgumentThree() {
+        String input = "1,";
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
 }
