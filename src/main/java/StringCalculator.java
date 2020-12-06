@@ -15,14 +15,26 @@ public class StringCalculator {
         if (input.isEmpty()) {
             return 0;
         }
+        System.out.println(input); //todo test
+        //If input starts with syntax for changed delimiter
+        if (input.startsWith("//")) {
+            if (input.substring(3, 5).contains("\n")) {
+                defaultDelimiter = input.substring(2, 3);
+                input = input.substring(4);
+            } else {
+                System.out.println(input.substring(3, 5)); //todo test
+                //Invalid syntax for changed delimiter
+            }
+        }
+        System.out.println(input); //todo test
 
         //https://www.baeldung.com/java-string-with-separator-to-list
         //https://www.baeldung.com/java-8-collectors
 
         //Replace alternative delimiter with default delimiter
-        //Concat ",0" to make sure split() never deletes all trailing empty strings
+        //Concat delimiter followed by "0" to make sure split() never deletes all trailing empty strings
         //Split and map to int stream, then summarize
-        return Stream.of((input.replace(alternativeDelimiter, defaultDelimiter).concat(",0")).split(defaultDelimiter))
+        return Stream.of((input.replace(alternativeDelimiter, defaultDelimiter).concat(defaultDelimiter).concat("0")).split(defaultDelimiter))
                 .mapToInt(Integer::parseInt)
                 .sum();
     }
