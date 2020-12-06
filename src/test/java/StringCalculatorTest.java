@@ -68,4 +68,34 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Input with two numbers and comma delimiter should return sum of numbers")
+    void newLineDelimiterShouldWork() {
+        String input = "1\n2,3";
+        int expected = 6;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Double delimiter followed by number should throw exception")
+    void illegalArgumentOne() {
+        String input = "1,\n3";
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Double delimiter at the end should throw exception")
+    void illegalArgumentTwo() {
+        String input = "1,\n";
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Single delimiter at the end should throw exception")
+    void illegalArgumentThree() {
+        String input = "1,";
+        assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
+    }
 }
