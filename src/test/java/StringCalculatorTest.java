@@ -70,6 +70,13 @@ public class StringCalculatorTest {
     }
 
     @Test
+    @DisplayName("Custom delimiter syntax should throw exception if no custom delimiter is given")
+    void invalidAlternativeDelimiter() {
+        String input = "//[]\n1,2,3,4,5,6,7,8,9,10";
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
     @DisplayName("Input with two numbers and comma delimiter should return sum of numbers")
     void newLineDelimiterShouldWork() {
         String input = "1\n2,3";
@@ -99,3 +106,11 @@ public class StringCalculatorTest {
         assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
     }
 }
+
+//Support different delimiters:
+//
+//To change a delimiter, the beginning of the string will contain a separate line
+//that looks like this: “//[delimiter]\n[numbers…]”
+//for example “//;\n1;2” should return three where the default delimiter is ‘;’.
+//
+//The first line is optional. All existing scenarios should still be supported.
