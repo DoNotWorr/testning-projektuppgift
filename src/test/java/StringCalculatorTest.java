@@ -98,4 +98,35 @@ public class StringCalculatorTest {
         String input = "1,";
         assertThatExceptionOfType(Exception.class).isThrownBy(() -> calculator.add(input));
     }
+
+    @Test
+    @DisplayName("Changing delimiter invalidates the default delimiter")
+    void alternativeDelimiterInvalidatesDefaultDelimiter() {
+        String input = "//;\n1,2";
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Custom delimiter syntax should throw exception if no custom delimiter is given")
+    void invalidAlternativeDelimiter() {
+        String input = "//\n1,2";
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Input with two numbers and changed delimiter should return sum of numbers")
+    void alternativeDelimiterChanges() {
+        String input = "//;\n1;2";
+        int expected = 3;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
+
+//Support different delimiters:
+//
+//To change a delimiter, the beginning of the string will contain a separate line
+//that looks like this: “//[delimiter]\n[numbers…]”
+//for example “//;\n1;2” should return three where the default delimiter is ‘;’.
+//
+//The first line is optional. All existing scenarios should still be supported.
