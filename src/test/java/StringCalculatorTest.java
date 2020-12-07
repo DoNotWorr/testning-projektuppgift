@@ -129,7 +129,7 @@ public class StringCalculatorTest {
         //assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
         assertThatThrownBy(() -> calculator.add(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("negatives not allowed: -2");
+                .hasMessageContaining("Negatives not allowed: [-2]");
     }
 }
 
