@@ -34,7 +34,7 @@ public class StringCalculator {
                 .concat(defaultDelimiter)
                 .concat("0")                //Add a delimiter followed by "0" to make split consistant
                 .split(defaultDelimiter))
-                .map(Integer::parseInt)
+                .map(Integer::valueOf)
                 .collect(Collectors.toList());
 
         List<Integer> allNegative = allNumbers.stream().filter(num -> (num < 0)).collect(Collectors.toList());
@@ -42,9 +42,10 @@ public class StringCalculator {
         if (allNegative.isEmpty()) {
             return allNumbers
                     .stream()
-                    .mapToInt(num -> num)
+                    .mapToInt(Integer::intValue)
                     .filter(number -> (number <= 1000))
                     .sum();
+
         } else {
             throw new IllegalArgumentException("Negatives not allowed: " + allNegative);
         }
