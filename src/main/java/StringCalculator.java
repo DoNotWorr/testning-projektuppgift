@@ -43,6 +43,7 @@ public class StringCalculator {
             return allNumbers
                     .stream()
                     .mapToInt(x -> x)
+                    .filter(x -> (x <= 1000))
                     .sum();
         } else {
             throw new IllegalArgumentException("Negatives not allowed: " + allNegative);
