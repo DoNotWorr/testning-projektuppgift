@@ -7,6 +7,7 @@ public class StringCalculator {
     /**
      * //https://www.baeldung.com/java-string-with-separator-to-list
      * //https://www.baeldung.com/java-8-collectors
+     *
      * @param input numbers separated by comma
      * @return sum of numbers
      * @throws NumberFormatException non-numbers, invalid syntax for changing delimiter
@@ -20,12 +21,17 @@ public class StringCalculator {
         }
         //If input starts with syntax for changed delimiter
         if (input.startsWith("//")) {
-            if (input.substring(3, 5).contains("\n")) {
-                defaultDelimiter = input.substring(2, 3);
+            int beforeDelimiter = 2;
+            int afterDelimiter = input.indexOf("\n");
+            String possiblyDelimiter = input.substring(beforeDelimiter, afterDelimiter);
+            if (possiblyDelimiter.length() == 1) {
+                defaultDelimiter = possiblyDelimiter;
                 input = input.substring(4);
-            } else {
-                //Invalid syntax for changed delimiter
-                //Not sure if throwing exception is necessary
+            } else if (possiblyDelimiter.length() >= 3) {
+                if (possiblyDelimiter.startsWith("[") && possiblyDelimiter.endsWith("]")) {
+                    defaultDelimiter = possiblyDelimiter.substring(1, possiblyDelimiter.length() - 1);
+                    input = input.substring(afterDelimiter + 1);
+                }
             }
         }
 

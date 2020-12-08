@@ -140,7 +140,30 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Different format for changing delimiter")
+    void differentFormatForChangeDelimiterWorks() {
+        String input = "//[;]\n1;2";
+        int expected = 3;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Different format for changing delimiter")
+    void longerDelimiterWorks() {
+        String input = "//[abc]\n1abc2";
+        int expected = 3;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
 
-//Step 6
-//Numbers bigger than 1000 should be ignored, so adding 2 + 1001 = 2
+//Step 7
+/*
+
+Delimiters can be of any length with the following format:
+“//[delimiter]\n” for example: “//[***]\n1***2***3” should return 6.
+
+ */
