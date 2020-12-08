@@ -42,8 +42,8 @@ public class StringCalculator {
         if (allNegative.isEmpty()) {
             return allNumbers
                     .stream()
-                    .mapToInt(x -> x)
-                    .filter(x -> (x <= 1000))
+                    .mapToInt(num -> num)
+                    .filter(number -> (number <= 1000))
                     .sum();
         } else {
             throw new IllegalArgumentException("Negatives not allowed: " + allNegative);
