@@ -110,7 +110,8 @@ public class StringCalculatorTest {
     @DisplayName("Custom delimiter syntax should throw exception if no custom delimiter is given")
     void invalidAlternativeDelimiter() {
         String input = "//\n1,2";
-        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> calculator.add(input));
     }
 
     @Test
@@ -157,6 +158,22 @@ public class StringCalculatorTest {
         int expected = 3;
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Changed delimiter should throw exception if not all characters are within brackets")
+    void invalidSyntaxChangedDelimiter() {
+        String input = "//[**]1\n1,2";
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> calculator.add(input));
+    }
+
+    @Test
+    @DisplayName("Brackets required when changed delimiter is longer than one character")
+    void invalidSyntaxLongerCustomDelimiter() {
+        String input = "//ee\n1,2";
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> calculator.add(input));
     }
 }
 
