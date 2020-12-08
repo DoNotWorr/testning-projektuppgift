@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 public class StringCalculator {
 
     /**
+     * //https://www.baeldung.com/java-string-with-separator-to-list
+     * //https://www.baeldung.com/java-8-collectors
      * @param input numbers separated by comma
      * @return sum of numbers
      * @throws NumberFormatException non-numbers, invalid syntax for changing delimiter
@@ -45,8 +47,5 @@ public class StringCalculator {
         } else {
             throw new IllegalArgumentException("Negatives not allowed: " + allNegative);
         }
-
-        //https://www.baeldung.com/java-string-with-separator-to-list
-        //https://www.baeldung.com/java-8-collectors
     }
 }
