@@ -121,6 +121,16 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Negative number should throw exception")
+    void negativeInputThrowsException() {
+        String input = "1,-2";
+        //assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> calculator.add(input));
+        assertThatThrownBy(() -> calculator.add(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Negatives not allowed: [-2]");
+    }
 }
 
 //Support different delimiters:

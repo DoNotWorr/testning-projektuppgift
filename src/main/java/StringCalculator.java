@@ -1,9 +1,12 @@
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class StringCalculator {
 
     /**
+     * //https://www.baeldung.com/java-string-with-separator-to-list
+     * //https://www.baeldung.com/java-8-collectors
      * @param input numbers separated by comma
      * @return sum of numbers
      * @throws NumberFormatException non-numbers, invalid syntax for changing delimiter
@@ -26,16 +29,23 @@ public class StringCalculator {
             }
         }
 
-        //https://www.baeldung.com/java-string-with-separator-to-list
-        //https://www.baeldung.com/java-8-collectors
-        return Stream.of((input
-                //Change all delimiters
+        List<Integer> allNumbers = Arrays.stream(input
                 .replace(alternativeDelimiter, defaultDelimiter)
-                //Add a delimiter followed by "0" to make split consistant
                 .concat(defaultDelimiter)
-                .concat("0"))
+                .concat("0")                //Add a delimiter followed by "0" to make split consistant
                 .split(defaultDelimiter))
-                .mapToInt(Integer::parseInt)
-                .sum();
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        List<Integer> allNegative = allNumbers.stream().filter(num -> (num < 0)).collect(Collectors.toList());
+
+        if (allNegative.isEmpty()) {
+            return allNumbers
+                    .stream()
+                    .mapToInt(x -> x)
+                    .sum();
+        } else {
+            throw new IllegalArgumentException("Negatives not allowed: " + allNegative);
+        }
     }
 }
