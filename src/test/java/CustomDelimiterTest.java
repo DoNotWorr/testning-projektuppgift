@@ -57,4 +57,20 @@ public class CustomDelimiterTest {
 
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    void smarterConstructor() {
+        String input = "1,1";
+        String expectedNumbers = "1,1";
+        String expectedDelimiter = "[\n]|[,]";
+
+        CustomDelimiter smarterConstructor = new CustomDelimiter(input);
+        String actualNumbers = smarterConstructor.getNumbers();
+        String actualDelimiter = smarterConstructor.getDelimiters();
+
+        assertThat(actualNumbers).isEqualTo(expectedNumbers);
+        assertThat(actualDelimiter).isEqualTo(expectedDelimiter);
+    }
+
+
 }

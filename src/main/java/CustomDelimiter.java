@@ -1,21 +1,23 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
-import static java.util.stream.Collectors.toList;
 
 public class CustomDelimiter {
-    private final List<String> delimiters;
+    private List<String> delimiters;
     private boolean defaultDelimiter;
+    private String numbers;
 
     public CustomDelimiter() {
         delimiters = new ArrayList<>();
         delimiters.add("[\n]");
         delimiters.add("[,]");
         defaultDelimiter = true;
+    }
+
+    public CustomDelimiter(String input) {
+        this();
+        this.numbers = input;
     }
 
     public String getDelimiters() {
@@ -39,6 +41,10 @@ public class CustomDelimiter {
             resultBuilder.append("]");
         }
         return resultBuilder.toString();
+    }
+
+    public String getNumbers() {
+        return "1,1";
     }
 }
 
