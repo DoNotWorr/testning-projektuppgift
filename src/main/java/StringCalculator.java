@@ -20,9 +20,6 @@ public class StringCalculator {
         //Create an object to hold delimiters. By default it's "\n" and ","
         CustomDelimiter delimiters = new CustomDelimiter();
 
-        String defaultDelimiter = ",";
-        String alternativeDelimiter = "\n";
-
         //If input starts with syntax for changed delimiter
         if (input.startsWith("//")) {
             int beforeDelimiter = 2;
@@ -46,7 +43,6 @@ public class StringCalculator {
                 }
             }
         }
-
 
         List<Integer> allNumbers = Arrays.stream(input.concat("\n0")
                 .split(delimiters.getDelimiters()))

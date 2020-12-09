@@ -175,12 +175,35 @@ public class StringCalculatorTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> calculator.add(input));
     }
+
+    @Test
+    @DisplayName("Multiple custom delimiters works.")
+    void multipleDelimitersWorks() {
+        String input = "//[*][%]\n1*2%3";
+        int expected = 6;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Multiple longer custom delimiters works.")
+    void multipleLongerDelimitersWorks() {
+        String input = "//[****][????]\n1****2????3";
+        int expected = 6;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Multiple longer custom delimiters works.")
+    void fiveLongerDelimitersWorks() {
+        String input = "//[****][????][asdf][qwer][ppp]\n1****2????3asdf4qwer5ppp6";
+        int expected = 21;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
 
-
-/*
-Step 8
-
-Allow multiple delimiters like this:
-"//[delim1][delim2]\n" for example "//[*][%]\n1*2%3" should return 6.
- */
+// Step 8
+// Allow multiple delimiters like this:
+// “//[delim1][delim2]\n” for example “//[*][%]\n1*2%3” should return 6.
