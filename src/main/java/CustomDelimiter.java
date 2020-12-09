@@ -1,8 +1,11 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
 public class CustomDelimiter {
     private final List<String> delimiters;
@@ -29,7 +32,13 @@ public class CustomDelimiter {
     }
 
     private String formatDelimiter(String input) {
-        return Stream.of(input.toCharArray()).map(String::valueOf).collect(joining("", "[", "]"));
+        StringBuilder resultBuilder = new StringBuilder();
+        for(int i = 0; i < input.length(); i++) {
+            resultBuilder.append("[");
+            resultBuilder.append(input.substring(i, i+1));
+            resultBuilder.append("]");
+        }
+        return resultBuilder.toString();
     }
 }
 
