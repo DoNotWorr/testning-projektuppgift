@@ -184,6 +184,24 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Multiple longer custom delimiters works.")
+    void multipleLongerDelimitersWorks() {
+        String input = "//[****][????]\n1****2????3";
+        int expected = 6;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Multiple longer custom delimiters works.")
+    void fiveLongerDelimitersWorks() {
+        String input = "//[****][????][asdf][qwer][ppp]\n1****2????3asdf4qwer5ppp6";
+        int expected = 21;
+        int actual = calculator.add(input);
+        assertThat(actual).isEqualTo(expected);
+    }
 }
 
 // Step 8
