@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.joining;
 
 public class CustomDelimiter {
     List<String> delimiters;
@@ -11,20 +15,12 @@ public class CustomDelimiter {
     }
 
     public String getDelimiters() {
-        StringBuilder result = new StringBuilder();
-        result.append("[");
-        for (String delimiter : delimiters) {
-            result.append(delimiter);
-            result.append("|");
-        }
-        result.deleteCharAt(result.toString().length() - 1);
-        result.append("]");
-        return result.toString();
+        return delimiters.stream()
+                .collect(joining("|", "[", "]"));
     }
 
     public void addDelimiter(String input) {
         delimiters.remove(1);
         delimiters.add(input);
-
     }
 }
