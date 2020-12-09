@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -9,14 +10,14 @@ public class CustomDelimiter {
 
     public CustomDelimiter() {
         delimiters = new ArrayList<>();
-        delimiters.add("\n");
-        delimiters.add(",");
+        delimiters.add("[\n]");
+        delimiters.add("[,]");
         defaultDelimiter = true;
     }
 
     public String getDelimiters() {
         return delimiters.stream()
-                .collect(joining("|", "[", "]"));
+                .collect(joining("|", "", ""));
     }
 
     public void addDelimiter(String input) {
@@ -24,7 +25,11 @@ public class CustomDelimiter {
             delimiters.remove(1);
             defaultDelimiter = false;
         }
-        delimiters.add(input);
+        delimiters.add(formatDelimiter(input));
+    }
+
+    private String formatDelimiter(String input) {
+        return Stream.of(input.toCharArray()).map(String::valueOf).collect(joining("", "[", "]"));
     }
 }
 

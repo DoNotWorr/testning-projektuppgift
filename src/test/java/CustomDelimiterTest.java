@@ -15,9 +15,9 @@ public class CustomDelimiterTest {
     @Test
     @DisplayName("Newline and comma should be the default delimiters")
     void defaultCallGetter() {
-        String expected = "[\n|,]";
+        String expected = "[\n]|[,]";
         String actual = customDelimiter.getDelimiters();
-        assertThat(expected).isEqualTo(actual);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -26,10 +26,10 @@ public class CustomDelimiterTest {
         String input = ";";
         customDelimiter.addDelimiter(input);
 
-        String expected = "[\n|;]";
+        String expected = "[\n]|[;]";
         String actual = customDelimiter.getDelimiters();
 
-        assertThat(expected).isEqualTo(actual);
+        assertThat(actual).isEqualTo(expected);
     }
 
     @Test
@@ -40,9 +40,21 @@ public class CustomDelimiterTest {
         customDelimiter.addDelimiter(input);
         customDelimiter.addDelimiter(secondInput);
 
-        String expected = "[\n|;|*]";
+        String expected = "[\n]|[;]|[*]";
         String actual = customDelimiter.getDelimiters();
 
-        assertThat(expected).isEqualTo(actual);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("Adding a longer delimiter should give it the correct format")
+    void addLongerDelimiter() {
+        String input = "abc";
+        customDelimiter.addDelimiter(input);
+
+        String expected = "[\n]|[a][b][c]";
+        String actual = customDelimiter.getDelimiters();
+
+        assertThat(actual).isEqualTo(expected);
     }
 }
