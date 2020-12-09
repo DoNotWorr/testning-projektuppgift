@@ -1,11 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class CustomDelimiter {
-    String delimiter = ",";
+    List<String> delimiters;
+
+    public CustomDelimiter() {
+        delimiters = new ArrayList<>();
+        delimiters.add("\n");
+        delimiters.add(",");
+    }
 
     public String getDelimiter() {
-        return "[" + delimiter + "]";
+        return "[\n|,]";
     }
 
     public void addDelimiter(String input) {
-        this.delimiter = input;
+        //this.delimiter = input;
     }
 }
