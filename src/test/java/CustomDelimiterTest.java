@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,19 +15,18 @@ public class CustomDelimiterTest {
     @DisplayName("Newline and comma should be the default delimiters")
     void defaultCallGetter() {
         String expected = "[\n|,]";
-        String actual = customDelimiter.getDelimiter();
+        String actual = customDelimiter.getDelimiters();
         assertThat(expected).isEqualTo(actual);
     }
 
     @Test
-    @Disabled
     @DisplayName("First time adding a delimiter should return newline and the added delimiter")
     void addDelimiterOnce() {
         String input = ";";
         customDelimiter.addDelimiter(input);
 
         String expected = "[\n|;]";
-        String actual = customDelimiter.getDelimiter();
+        String actual = customDelimiter.getDelimiters();
 
         assertThat(expected).isEqualTo(actual);
     }

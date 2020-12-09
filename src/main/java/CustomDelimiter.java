@@ -10,11 +10,21 @@ public class CustomDelimiter {
         delimiters.add(",");
     }
 
-    public String getDelimiter() {
-        return "[\n|,]";
+    public String getDelimiters() {
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        for (String delimiter : delimiters) {
+            result.append(delimiter);
+            result.append("|");
+        }
+        result.deleteCharAt(result.toString().length() - 1);
+        result.append("]");
+        return result.toString();
     }
 
     public void addDelimiter(String input) {
-        //this.delimiter = input;
+        delimiters.remove(1);
+        delimiters.add(input);
+
     }
 }
