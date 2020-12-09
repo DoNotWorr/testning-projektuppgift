@@ -13,33 +13,43 @@ public class StringCalculator {
      * @throws NumberFormatException non-numbers, invalid syntax for changing delimiter
      */
     public int add(String input) {
-        String defaultDelimiter = ",";
-        String alternativeDelimiter = "\n";
-
+        //Always returns 0 if input is empty
         if (input.isEmpty()) {
             return 0;
         }
+        //Create an object to hold delimiters. By default it's "\n" and ","
+        CustomDelimiter delimiters = new CustomDelimiter();
+
+        String defaultDelimiter = ",";
+        String alternativeDelimiter = "\n";
+
         //If input starts with syntax for changed delimiter
         if (input.startsWith("//")) {
             int beforeDelimiter = 2;
             int afterDelimiter = input.indexOf("\n");
             String possiblyDelimiter = input.substring(beforeDelimiter, afterDelimiter);
             if (possiblyDelimiter.length() == 1) {
-                defaultDelimiter = possiblyDelimiter;
+                delimiters.addDelimiter(possiblyDelimiter);
                 input = input.substring(4);
-            } else if (possiblyDelimiter.length() >= 3) {
+            } else if (possiblyDelimiter.length() == 3) {
                 if (possiblyDelimiter.startsWith("[") && possiblyDelimiter.endsWith("]")) {
-                    defaultDelimiter = possiblyDelimiter.substring(1, possiblyDelimiter.length() - 1);
+                    delimiters.addDelimiter(possiblyDelimiter.substring(1, 2));
+                    input = input.substring(afterDelimiter + 1);
+                }
+            } else if (possiblyDelimiter.length() > 3) {
+                if (possiblyDelimiter.startsWith("[") && possiblyDelimiter.endsWith("]")) {
+                    String[] possibleDelimiters = possiblyDelimiter.substring(1, possiblyDelimiter.length() - 1).split("]\\[");
+                    for (String possibleDelimiter : possibleDelimiters) {
+                        delimiters.addDelimiter(possibleDelimiter);
+                    }
                     input = input.substring(afterDelimiter + 1);
                 }
             }
         }
 
-        List<Integer> allNumbers = Arrays.stream(input
-                .replace(alternativeDelimiter, defaultDelimiter)
-                .concat(defaultDelimiter)
-                .concat("0")                //Add a delimiter followed by "0" to make split consistant
-                .split(defaultDelimiter))
+
+        List<Integer> allNumbers = Arrays.stream(input.concat("\n0")
+                .split(delimiters.getDelimiters()))
                 .map(Integer::valueOf)
                 .collect(Collectors.toList());
 
