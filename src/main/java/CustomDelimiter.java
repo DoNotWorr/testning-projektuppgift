@@ -1,6 +1,11 @@
 public class CustomDelimiter {
+    String delimiter = ",";
 
     public String getDelimiter() {
-        return "[,]";
+        return "[" + delimiter + "]";
+    }
+
+    public void addDelimiter(String input) {
+        this.delimiter = input;
     }
 }
