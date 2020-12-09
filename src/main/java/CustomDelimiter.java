@@ -6,7 +6,8 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 
 public class CustomDelimiter {
-    List<String> delimiters;
+    private List<String> delimiters;
+    private boolean changedDelimiter;
 
     public CustomDelimiter() {
         delimiters = new ArrayList<>();
@@ -20,7 +21,12 @@ public class CustomDelimiter {
     }
 
     public void addDelimiter(String input) {
-        delimiters.remove(1);
-        delimiters.add(input);
+        if (changedDelimiter) {
+            delimiters.add(input);
+        } else {
+            delimiters.remove(1);
+            delimiters.add(input);
+            changedDelimiter = true;
+        }
     }
 }

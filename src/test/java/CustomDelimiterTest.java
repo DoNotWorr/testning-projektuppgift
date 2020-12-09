@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,6 +27,20 @@ public class CustomDelimiterTest {
         customDelimiter.addDelimiter(input);
 
         String expected = "[\n|;]";
+        String actual = customDelimiter.getDelimiters();
+
+        assertThat(expected).isEqualTo(actual);
+    }
+
+    @Test
+    @DisplayName("First added delimiter should overwrite default comma")
+    void addDelimiterChangeFalse() {
+        String input = ";";
+        String secondInput = "*";
+        customDelimiter.addDelimiter(input);
+        customDelimiter.addDelimiter(secondInput);
+
+        String expected = "[\n|;|*]";
         String actual = customDelimiter.getDelimiters();
 
         assertThat(expected).isEqualTo(actual);
