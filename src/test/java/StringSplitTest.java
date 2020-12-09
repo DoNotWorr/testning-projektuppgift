@@ -2,6 +2,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 @DisplayName("Reminder of how split regex with special characters work")
 public class StringSplitTest {
     @Test
@@ -24,11 +25,11 @@ public class StringSplitTest {
 
     @Test
     void testSplitThree() {
-        String delimiters = "[*]|[%]|[a]";
-        String input = "1*2%3a4";
+        String delimiters = "[\n]|[%]|[*]|[;]";
+        String input = "1*2%3;4\n5";
 
         String[] actual = input.split(delimiters);
-        String[] expected = {"1", "2", "3", "4"};
+        String[] expected = {"1", "2", "3", "4", "5"};
 
         assertThat(actual).isEqualTo(expected);
     }
