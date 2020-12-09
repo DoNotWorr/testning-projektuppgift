@@ -71,6 +71,4 @@ public class CustomDelimiterTest {
         assertThat(actualNumbers).isEqualTo(expectedNumbers);
         assertThat(actualDelimiter).isEqualTo(expectedDelimiter);
     }
-
-
 }
