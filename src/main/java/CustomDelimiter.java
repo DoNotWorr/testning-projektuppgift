@@ -1,18 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
 public class CustomDelimiter {
-    private List<String> delimiters;
-    private boolean changedDelimiter;
+    private final List<String> delimiters;
+    private boolean defaultDelimiter;
 
     public CustomDelimiter() {
         delimiters = new ArrayList<>();
         delimiters.add("\n");
         delimiters.add(",");
+        defaultDelimiter = true;
     }
 
     public String getDelimiters() {
@@ -21,12 +20,11 @@ public class CustomDelimiter {
     }
 
     public void addDelimiter(String input) {
-        if (changedDelimiter) {
-            delimiters.add(input);
-        } else {
+        if (defaultDelimiter) {
             delimiters.remove(1);
-            delimiters.add(input);
-            changedDelimiter = true;
+            defaultDelimiter = false;
         }
+        delimiters.add(input);
     }
 }
+
