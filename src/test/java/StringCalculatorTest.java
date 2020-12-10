@@ -160,4 +160,12 @@ public class StringCalculatorTest {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("Custom delimiter syntax without newline shouldn't work")
+    void customDelimiterInvalidSyntax() {
+        String input = "//[abc]1abc2";
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> calculator.add(input));
+    }
 }

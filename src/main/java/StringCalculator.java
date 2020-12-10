@@ -21,7 +21,7 @@ public class StringCalculator {
         CustomDelimiter delimiters = new CustomDelimiter();
 
         //If input starts with syntax for changed delimiter
-        if (input.startsWith("//")) {   //todo could also check that input contains newline
+        if (input.startsWith("//") && input.contains("\n")) {
             int beforeDelimiter = 2;
             int afterDelimiter = input.indexOf("\n");
             String possiblyDelimiter = input.substring(beforeDelimiter, afterDelimiter);
