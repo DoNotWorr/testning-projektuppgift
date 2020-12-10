@@ -8,7 +8,7 @@ public class StringCalculator {
      * //https://www.baeldung.com/java-string-with-separator-to-list
      * //https://www.baeldung.com/java-8-collectors
      *
-     * @param input numbers separated by comma
+     * @param input numbers separated by comma. Alternatively "//c\n1c2" where c can be replaced by any character. Alternatively //[abc][def]\n1abc2def where each delimiter is surrender by brackets.
      * @return sum of numbers
      * @throws NumberFormatException non-numbers, invalid syntax for changing delimiter
      */
