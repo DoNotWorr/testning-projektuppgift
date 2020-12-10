@@ -2,6 +2,8 @@ import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class StringCalculatorTest {
     StringCalculator calculator = new StringCalculator();
@@ -18,18 +20,10 @@ public class StringCalculatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @Test
-    void inputReturnsIntRepresentation() {
-        String input = "0";
-        int expected = 0;
-        int actual = calculator.add(input);
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @Test
-    void anotherInputReturnsIntRepresentation() {
-        String input = "1";
-        int expected = 1;
+    @ParameterizedTest
+    @DisplayName("String representation should return int representation of number")
+    @CsvSource({"0, 0", "1, 1"})
+    void oneNumberParameter(String input, int expected) {
         int actual = calculator.add(input);
         assertThat(actual).isEqualTo(expected);
     }
@@ -203,7 +197,3 @@ public class StringCalculatorTest {
         assertThat(actual).isEqualTo(expected);
     }
 }
-
-// Step 8
-// Allow multiple delimiters like this:
-// “//[delim1][delim2]\n” for example “//[*][%]\n1*2%3” should return 6.
